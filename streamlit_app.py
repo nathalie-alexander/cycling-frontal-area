@@ -34,8 +34,6 @@ st.markdown(
     Aerodynamic drag is the single largest resistive force a cyclist must overcome above ~15 km/h.  
     Because drag grows with the square of velocity, even small reductions in the rider–bicycle frontal area  
     can yield significant power savings.  
-
-    **Drag‐force equation**  
     """
 )
 
@@ -44,6 +42,7 @@ col_text, col_plot = st.columns([1,2])
 col_text.markdown(
     """
     \n\n\n
+    **Drag‐force equation**  
     """
 )
 col_text.latex(r'''
