@@ -28,6 +28,30 @@ model = load_model()
 st.title("🎥 Person Segmentation from Video")
 st.markdown(
     """
+    ## Why Measure Frontal Area in Cycling?  
+    Aerodynamic drag is the single largest resistive force a cyclist must overcome above ~15 km/h.  
+    Because drag grows with the square of velocity, even small reductions in the rider–bicycle frontal area  
+    can yield significant power savings.  
+
+    **Drag‐force equation**  
+    $$
+    F_R \;=\; \frac{c_w \,\cdot\, A \,\cdot\, \rho \,\cdot\, v^2}{2}
+    $$
+    where  
+    - $F_R$ is the resistive (drag) force  
+    - $c_w$ is the drag coefficient  
+    - $A$ is the frontal area  
+    - $\rho$ is the air density  
+    - $v$ is the relative wind speed  
+
+    **Note:** extracting the silhouette from a frontal video gives only a **rough estimate** of the true frontal area and possible savings related to position changes. 
+    """
+)
+
+
+
+st.markdown(
+    """
     **How to use:**  
     1. **Upload a video** filmed from a straight-on (frontal) perspective so that the person’s silhouette is fully visible and you capture the true frontal area.  
     2. The video file should contain all the different positions you want to analyse (no separate files). 
