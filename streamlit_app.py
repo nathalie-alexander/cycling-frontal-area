@@ -5,6 +5,7 @@ from ultralytics import YOLO
 import tempfile
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 
 # ————————————————
 # 1. Load model & set up
@@ -26,7 +27,8 @@ def load_csv(uploader):
 model = load_model()
 
 st.title("🎥 Person Segmentation from Video")
-st.markdown(
+col_text, col_plot = st.columns(2)
+col_text.markdown(
     """
     ## Why Measure Frontal Area in Cycling?  
     Aerodynamic drag is the single largest resistive force a cyclist must overcome above ~15 km/h.  
@@ -37,10 +39,10 @@ st.markdown(
     """
 )
 
-st.latex(r'''
+col_text.latex(r'''
 F_R \;=\; \frac{c_w \,\cdot\, A \,\cdot\, \rho \,\cdot\, v^2}{2}
 ''')
-st.markdown(
+col_text.markdown(
     """
     where  
     - $F_R$ is the resistive (drag) force  
@@ -53,7 +55,80 @@ st.markdown(
     """, unsafe_allow_html=True
 )
 
+@st.cache_data(show_spinner=False)
+def get_resistance_figure(
+    roll_force: float = 6,
+    air_coef: float = 0.2,
+    vmax_kmh: float = 45,
+    n_points: int = 200
+) -> go.Figure:
+    # 1) Compute data
+    v_kmh = np.linspace(0, vmax_kmh, n_points)
+    v_ms  = v_kmh / 3.6
+    F_roll  = np.full_like(v_kmh, roll_force)
+    F_air   = air_coef * v_ms**2
+    F_total = F_roll + F_air
 
+    pct_air  = F_air  / F_total * 100
+    pct_roll = F_roll / F_total * 100
+
+    # 2) Build the figure
+    fig = go.Figure()
+
+    fig.add_trace(go.Scatter(
+        x=v_kmh, y=F_total, mode='lines', name='Total Resistance',
+        line=dict(color='black', width=3),
+        hovertemplate='Total: %{y:.1f} N<extra></extra>'
+    ))
+
+    fig.add_trace(go.Scatter(
+        x=v_kmh, y=F_air, mode='lines', name='Aerodynamic Drag',
+        line=dict(color='teal'),
+        customdata=np.stack([pct_air], axis=-1),
+        hovertemplate=(
+            'Speed: %{x:.1f} km/h<br>'
+            'Aero: %{y:.1f} N<br>'
+            'Share: %{customdata[0]:.1f}%<extra></extra>'
+        )
+    ))
+
+    fig.add_trace(go.Scatter(
+        x=v_kmh, y=F_roll, mode='lines', name='Rolling Resistance',
+        line=dict(color='navy'),
+        customdata=np.stack([pct_roll], axis=-1),
+        hovertemplate=(
+            'Speed: %{x:.1f} km/h<br>'
+            'Roll: %{y:.1f} N<br>'
+            'Share: %{customdata[0]:.1f}%<extra></extra>'
+        )
+    ))
+
+    # 3) Layout & spikes
+    fig.update_layout(
+        title='Resistance Components vs. Speed',
+        xaxis_title='Speed (km/h)',
+        yaxis_title='Resistance (N)',
+        hovermode='x unified',
+        template='simple_white'
+    )
+    fig.update_xaxes(
+        hoverformat=".1f",
+        ticksuffix=" km/h",
+        showspikes=True,
+        spikecolor="grey",
+        spikethickness=1,
+        spikedash="dash",
+        spikesnap="cursor",
+        spikemode="across"
+    )
+    fig.update_yaxes(showspikes=True)
+
+    return fig
+
+# In your Streamlit app:
+fig = get_resistance_figure()
+col_plot.plotly_chart(fig)
+col_plot.caption("Rough estimate of resistances.")
 
 
 st.markdown(
