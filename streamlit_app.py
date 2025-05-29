@@ -1,5 +1,5 @@
 import streamlit as st
-import cv2
+#import cv2
 import numpy as np
 from ultralytics import YOLO
 import tempfile
@@ -10,7 +10,7 @@ st.write(
 )
 
 # Load model (small or nano for speed)
-model = YOLO("yolov8n-seg.pt")
+#model = YOLO("yolov8n-seg.pt")
 
 st.title("Live Video Mask Dashboard")
 st.markdown("Shows 'person' mask overlay and area plot")

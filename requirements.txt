@@ -1,9 +1,7 @@
-streamlit
-ultralytics
+streamlit==1.35.0
+ultralytics==8.2.23
+torch==2.1.0
+torchvision==0.16.0
 opencv-python-headless==4.9.0.80
 numpy
 matplotlib
-
-# Prevent OpenCV GUI version that causes libGL error
-opencv-python==999.999.999  # fake high version to block install
-
