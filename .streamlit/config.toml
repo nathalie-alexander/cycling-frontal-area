@@ -5,3 +5,6 @@ enableCORS = false
 
 [theme]
 base = "light"
+
+[runner]
+fastReruns = false
