@@ -26,7 +26,7 @@ def load_csv(uploader):
 
 model = load_model()
 
-st.title("🎥 Person Segmentation from Video")
+st.title("Cycling - Frontal Area Calculation from Video")
 
 st.markdown(
     """
@@ -41,7 +41,7 @@ col_text, col_plot = st.columns([1,2])
 
 col_text.markdown(
     """
-    \n\n\n
+    \n \n \n 
     **Drag‐force equation**  
     """
 )
