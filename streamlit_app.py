@@ -1,5 +1,12 @@
+import types
+import sys
+
+# Monkey-patch to prevent Streamlit watcher from triggering torch bug
+sys.modules['torch.classes'] = types.ModuleType("torch.classes")
+
+
 import streamlit as st
-#import cv2
+import cv2
 import numpy as np
 from ultralytics import YOLO
 import tempfile
