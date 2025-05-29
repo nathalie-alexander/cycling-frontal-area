@@ -70,7 +70,7 @@ if uploaded_csv is not None and video_path is None:
             title="Frontal area over time",
             labels={"frame":"Frame","person_area":"Person Area"}
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig)
     else:
         st.error("CSV must contain `frame` and `person_area` columns.")
     st.stop()  # done for CSV-only
@@ -141,7 +141,7 @@ if uploaded_csv is None:
                 # overlay & display
                 overlay = rgb.copy()
                 overlay[mask] = (overlay[mask] * 0.5 + np.array([0,255,0])*0.5).astype(np.uint8)
-                img_pl.image(overlay, caption=f"Frame {idx}", use_container_width =True)
+                img_pl.image(overlay, caption=f"Frame {idx}")
 
                 # store & chart
                 st.session_state.person_areas.append(mask.sum())
@@ -270,7 +270,7 @@ if analysis_ready:
         )
 
     col_img, col_chart = st.columns([1, 2])
-    col_chart.plotly_chart(fig, use_container_width=True)
+    col_chart.plotly_chart(fig)
 
     # grab & display the video frame
     cap = cv2.VideoCapture(video_path)
@@ -279,7 +279,7 @@ if analysis_ready:
     cap.release()
     if ok:
         rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        col_img.image(rgb, caption=f"Frame {current_frame}", use_container_width  =True)
+        col_img.image(rgb, caption=f"Frame {current_frame}")
     else:
         st.error(f"Could not read frame {current_frame}.")
 
