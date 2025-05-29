@@ -8,3 +8,4 @@ base = "light"
 
 [runner]
 fastReruns = false
+enableFsWatcher = false
