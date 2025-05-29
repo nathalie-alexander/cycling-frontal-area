@@ -34,6 +34,14 @@ st.markdown(
     can yield significant power savings.  
 
     **Drag‐force equation**  
+    """
+)
+
+st.latex(r'''
+F_R \;=\; \frac{c_w \,\cdot\, A \,\cdot\, \rho \,\cdot\, v^2}{2}
+''')
+st.markdown(
+    """
     $$
     F_R \;=\; \frac{c_w \,\cdot\, A \,\cdot\, \rho \,\cdot\, v^2}{2}
     $$
@@ -47,6 +55,7 @@ st.markdown(
     **Note:** extracting the silhouette from a frontal video gives only a **rough estimate** of the true frontal area and possible savings related to position changes. 
     """
 )
+
 
 
 
