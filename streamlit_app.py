@@ -46,7 +46,7 @@ st.markdown(
     - $F_R$ is the resistive (drag) force  
     - $c_w$ is the drag coefficient  
     - $A$ is the frontal area  
-    - $\rho$ is the air density  
+    - $\\rho$ is the air density  
     - $v$ is the relative wind speed  
 
     **Note:** extracting the silhouette from a frontal video gives only a **rough estimate** of the true frontal area and possible savings related to position changes. 
