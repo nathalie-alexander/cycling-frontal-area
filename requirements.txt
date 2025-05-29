@@ -1,5 +1,9 @@
 streamlit
 ultralytics
-opencv-python-headless
+opencv-python-headless==4.9.0.80
 numpy
 matplotlib
+
+# Prevent OpenCV GUI version that causes libGL error
+opencv-python==999.999.999  # fake high version to block install
+
