@@ -27,8 +27,8 @@ def load_csv(uploader):
 model = load_model()
 
 st.title("🎥 Person Segmentation from Video")
-col_text, col_plot = st.columns(2)
-col_text.markdown(
+
+st.markdown(
     """
     ## Why Measure Frontal Area in Cycling?  
     Aerodynamic drag is the single largest resistive force a cyclist must overcome above ~15 km/h.  
@@ -38,6 +38,8 @@ col_text.markdown(
     **Drag‐force equation**  
     """
 )
+
+col_text, col_plot = st.columns([1,2])
 
 col_text.latex(r'''
 F_R \;=\; \frac{c_w \,\cdot\, A \,\cdot\, \rho \,\cdot\, v^2}{2}
@@ -50,7 +52,10 @@ col_text.markdown(
     - $A$ is the frontal area  
     - $\\rho$ is the air density  
     - $v$ is the relative wind speed  
+    """)
 
+st.markdown(
+    """
     **Note:** extracting the silhouette from a frontal video gives only a **rough estimate** of the true frontal area and possible savings related to position changes. 
     """, unsafe_allow_html=True
 )
