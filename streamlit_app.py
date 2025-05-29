@@ -42,29 +42,22 @@ st.markdown(
 col_text, col_plot = st.columns([1,2])
 
 col_text.markdown(
-    r"""
-    <div style="
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      height: 300px;           /* adjust to taste */
-      text-align: center;
-    ">
-      <!-- MathJax will render this -->
-      $$F_R \;=\; \frac{c_w\,\cdot\,A\,\cdot\,\rho\,\cdot\,v^2}{2}$$
-
-      <p style="margin-top:1em; margin-bottom:0;">
-        <strong>where</strong><br>
-        &bull; $F_R$ is the resistive (drag) force<br>
-        &bull; $c_w$ is the drag coefficient<br>
-        &bull; $A$ is the frontal area<br>
-        &bull; $\rho$ is the air density<br>
-        &bull; $v$ is the relative wind speed
-      </p>
-    </div>
-    """,
-    unsafe_allow_html=True,
+    """
+    \n\n\n
+    """
 )
+col_text.latex(r'''
+F_R \;=\; \frac{c_w \,\cdot\, A \,\cdot\, \rho \,\cdot\, v^2}{2}
+''')
+col_text.markdown(
+    """
+    where  
+    - $F_R$ is the resistive (drag) force  
+    - $c_w$ is the drag coefficient  
+    - $A$ is the frontal area  
+    - $\\rho$ is the air density  
+    - $v$ is the relative wind speed  
+    """)
 
 st.markdown(
     """
