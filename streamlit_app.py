@@ -42,9 +42,6 @@ F_R \;=\; \frac{c_w \,\cdot\, A \,\cdot\, \rho \,\cdot\, v^2}{2}
 ''')
 st.markdown(
     """
-    $$
-    F_R \;=\; \frac{c_w \,\cdot\, A \,\cdot\, \rho \,\cdot\, v^2}{2}
-    $$
     where  
     - $F_R$ is the resistive (drag) force  
     - $c_w$ is the drag coefficient  
@@ -53,7 +50,7 @@ st.markdown(
     - $v$ is the relative wind speed  
 
     **Note:** extracting the silhouette from a frontal video gives only a **rough estimate** of the true frontal area and possible savings related to position changes. 
-    """
+    """, unsafe_allow_html=True
 )
 
 
