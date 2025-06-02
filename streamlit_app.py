@@ -27,6 +27,11 @@ def load_csv(uploader):
 model = load_model()
 
 st.title("Cycling - Frontal Area Calculation from Video")
+st.markdown("""
+*created by Nathalie Alexander*
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-black?logo=github)](https://github.com/nathalie-alexander)  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?logo=linkedin)](https://www.linkedin.com/in/nathalie-alexander-46860931/)
+""")
 
 st.markdown(
     """
@@ -66,7 +71,7 @@ st.markdown(
 
 @st.cache_data(show_spinner=False)
 def get_resistance_figure(
-    roll_force: float = 6,
+    roll_force: float = 5,
     air_coef: float = 0.2,
     vmax_kmh: float = 45,
     n_points: int = 200
