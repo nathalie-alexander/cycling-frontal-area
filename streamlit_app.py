@@ -28,8 +28,7 @@ model = load_model()
 
 st.title("Cycling - Frontal Area Calculation from Video")
 st.markdown("""
-*created by Nathalie Alexander*
-[![GitHub](https://img.shields.io/badge/GitHub-Profile-black?logo=github)](https://github.com/nathalie-alexander)  
+*created by Nathalie Alexander*  
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?logo=linkedin)](https://www.linkedin.com/in/nathalie-alexander-46860931/)
 """)
 
@@ -71,12 +70,12 @@ st.markdown(
 
 @st.cache_data(show_spinner=False)
 def get_resistance_figure(
-    roll_force: float = 5,
+    roll_force: float = 4,
     air_coef: float = 0.2,
     vmax_kmh: float = 45,
     n_points: int = 200
 ) -> go.Figure:
-    # 1) Compute data
+
     v_kmh = np.linspace(0, vmax_kmh, n_points)
     v_ms  = v_kmh / 3.6
     F_roll  = np.full_like(v_kmh, roll_force)
@@ -86,7 +85,6 @@ def get_resistance_figure(
     pct_air  = F_air  / F_total * 100
     pct_roll = F_roll / F_total * 100
 
-    # 2) Build the figure
     fig = go.Figure()
 
     fig.add_trace(go.Scatter(
@@ -117,7 +115,7 @@ def get_resistance_figure(
         )
     ))
 
-    # 3) Layout & spikes
+    # layout & spikes
     fig.update_layout(
         title='Resistance Components vs. Speed',
         xaxis_title='Speed (km/h)',
